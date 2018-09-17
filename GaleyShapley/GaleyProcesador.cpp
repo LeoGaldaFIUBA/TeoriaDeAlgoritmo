@@ -3,8 +3,8 @@
 #include <string>
 
 GaleyProcesador::GaleyProcesador(int N, int M, int X, int Y) :
-cantidadBandas(M), cantidadRecitales(N), cantidadRecitalesXBanda(Y),
-cantidadBandasXRecital(X) {
+    cantidadRecitales(N),cantidadBandas(M),
+    cantidadBandasXRecital(X), cantidadRecitalesXBanda(Y) {
 }
 
 GaleyProcesador::GaleyProcesador(const GaleyProcesador& orig) {

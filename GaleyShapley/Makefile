@@ -1,126 +1,125 @@
-#
-#  There exist several targets which are by default empty and which can be 
-#  used for execution of your targets. These targets are usually executed 
-#  before and after some main targets. They are: 
-#
-#     .build-pre:              called before 'build' target
-#     .build-post:             called after 'build' target
-#     .clean-pre:              called before 'clean' target
-#     .clean-post:             called after 'clean' target
-#     .clobber-pre:            called before 'clobber' target
-#     .clobber-post:           called after 'clobber' target
-#     .all-pre:                called before 'all' target
-#     .all-post:               called after 'all' target
-#     .help-pre:               called before 'help' target
-#     .help-post:              called after 'help' target
-#
-#  Targets beginning with '.' are not intended to be called on their own.
-#
-#  Main targets can be executed directly, and they are:
-#  
-#     build                    build a specific configuration
-#     clean                    remove built files from a configuration
-#     clobber                  remove all built files
-#     all                      build all configurations
-#     help                     print help mesage
-#  
-#  Targets .build-impl, .clean-impl, .clobber-impl, .all-impl, and
-#  .help-impl are implemented in nbproject/makefile-impl.mk.
-#
-#  Available make variables:
-#
-#     CND_BASEDIR                base directory for relative paths
-#     CND_DISTDIR                default top distribution directory (build artifacts)
-#     CND_BUILDDIR               default top build directory (object files, ...)
-#     CONF                       name of current configuration
-#     CND_PLATFORM_${CONF}       platform name (current configuration)
-#     CND_ARTIFACT_DIR_${CONF}   directory of build artifact (current configuration)
-#     CND_ARTIFACT_NAME_${CONF}  name of build artifact (current configuration)
-#     CND_ARTIFACT_PATH_${CONF}  path to build artifact (current configuration)
-#     CND_PACKAGE_DIR_${CONF}    directory of package (current configuration)
-#     CND_PACKAGE_NAME_${CONF}   name of package (current configuration)
-#     CND_PACKAGE_PATH_${CONF}   path to package (current configuration)
-#
-# NOCDDL
+# CONFIGURACION
+################
+
+# Nombre del ejecutable.
+target = main
+
+# Extensión de los archivos a compilar (c para C, cpp o cc o cxx para C++).
+extension = cpp
+
+# Archivos con el código fuente que componen el ejecutable. Si no se especifica,
+# toma todos los archivos con la extensión mencionada. Para especificar hay que
+# descomentar la línea (quitarle el '#' del principio).
+# NOTA: No poner cabeceras (.h).
+#fuentes = entrada.cpp
+
+# Si usa funciones de math.h, descomentar (quitar el '#' a) la siguiente línea.
+math = si
 
 
-# Environment 
-MKDIR=mkdir
-CP=cp
-CCADMIN=CCadmin
+# Opciones para el compilador C/C++ para tratamiento de errores y warnings.
+CFLAGS = -Wall -Werror -pedantic -pedantic-errors
+
+# Para optimizar el binario resultante lo mejor posible
+CFLAGS += -O3
+
+# Para valgrind o debug
+CFLAGS += -ggdb -DDEBUG -fno-inline
 
 
-# build
-build: .build-post
+# Estandar de C a usar
+CSTD = c99
 
-.build-pre:
-# Add your pre 'build' code here...
+# Estandar de C++ a usar
+CXXSTD = c++11
 
-.build-post: .build-impl
-# Add your post 'build' code here...
-
-
-# clean
-clean: .clean-post
-
-.clean-pre:
-# Add your pre 'clean' code here...
-
-.clean-post: .clean-impl
-# Add your post 'clean' code here...
+# Si se quiere compilar estaticamente, descomentar la siguiente linea
+#static = si
 
 
-# clobber
-clobber: .clobber-post
+# VARIABLES CALCULADAS A PARTIR DE LA CONFIGURACION
+####################################################
 
-.clobber-pre:
-# Add your pre 'clobber' code here...
+# Agrega flags y libs de GTK+ de ser necesario.
+ifdef gtk
+CFLAGS += $(shell pkg-config --cflags gtk+-3.0) \
+	-DG_DISABLE_DEPRECATED 	 	\
+	-DGDK_DISABLE_DEPRECATED 	\
+	-DGDK_PIXBUF_DISABLE_DEPRECATED \
+	-DGTK_DISABLE_DEPRECATED
+LDFLAGS += $(shell pkg-config --libs gtk+-3.0)
+endif
 
-.clobber-post: .clobber-impl
-# Add your post 'clobber' code here...
+# Agrega flags y libs de GTK+ de ser necesario.
+ifdef gtkmm
+CFLAGS += $(shell pkg-config --cflags gtkmm-3.0) \
+	-DG_DISABLE_DEPRECATED 	 	\
+	-DGDK_DISABLE_DEPRECATED 	\
+	-DGDK_PIXBUF_DISABLE_DEPRECATED \
+	-DGTK_DISABLE_DEPRECATED	\
+	-DGDKMM_DISABLE_DEPRECATED 	\
+	-DGTKMM_DISABLE_DEPRECATED
+LDFLAGS += $(shell pkg-config --libs gtkmm-3.0)
+endif
 
-
-# all
-all: .all-post
-
-.all-pre:
-# Add your pre 'all' code here...
-
-.all-post: .all-impl
-# Add your post 'all' code here...
-
-
-# build tests
-build-tests: .build-tests-post
-
-.build-tests-pre:
-# Add your pre 'build-tests' code here...
-
-.build-tests-post: .build-tests-impl
-# Add your post 'build-tests' code here...
-
-
-# run tests
-test: .test-post
-
-.test-pre: build-tests
-# Add your pre 'test' code here...
-
-.test-post: .test-impl
-# Add your post 'test' code here...
+# Linkea con libm de ser necesario.
+ifdef math
+LDFLAGS += -lm
+endif
 
 
-# help
-help: .help-post
+ifdef static
+LDFLAGS += -static
+endif
 
-.help-pre:
-# Add your pre 'help' code here...
+# Se reutilizan los flags de C para C++ también
+CXXFLAGS += $(CFLAGS)
 
-.help-post: .help-impl
-# Add your post 'help' code here...
+# Se usa enlazador de c++ si es código no C.
+ifeq ($(extension), c)
+CFLAGS += -std=$(CSTD)
+LD = $(CC)
+else
+CXXFLAGS += -std=$(CXXSTD)
+LD = $(CXX)
+endif
 
-# include project implementation makefile
-include nbproject/Makefile-impl.mk
+# Si no especifica archivos, tomo todos.
+fuentes ?= $(wildcard *.$(extension))
+directorios = $(shell find . -type d -regex '.*\w+')
 
-# include project make variables
-include nbproject/Makefile-variables.mk
+occ := $(CC)
+ocxx := $(CXX)
+orm := $(RM)
+old := $(LD)
+ifdef verbose
+RM := $(RM) -v
+else
+CC =  @echo "  CC  $@"; $(occ)
+CXX = @echo "  CXX $@"; $(ocxx)
+RM =  @echo "  CLEAN"; $(orm)
+LD =  @echo "  LD  $@"; $(old)
+endif
+
+
+# REGLAS
+#########
+
+.PHONY: all clean
+
+all: $(target)
+
+o_files = $(patsubst %.$(extension),%.o,$(fuentes))
+
+$(target): $(o_files)
+	@if [ -z "$(o_files)" ]; \
+	then \
+		echo "No hay archivos de entrada en el directorio actual. Recuerde que la extensión debe ser '.$(extension)' y que no se aceptan directorios anidados."; \
+		if [ -n "$(directorios)" ]; then echo "Directorios encontrados: $(directorios)"; fi; \
+		false; \
+	fi >&2
+	$(LD) $(o_files) -o $(target) $(LDFLAGS)
+
+clean:
+	$(RM) $(o_files) $(target)
+
