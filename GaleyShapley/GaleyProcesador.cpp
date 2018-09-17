@@ -22,18 +22,22 @@ void GaleyProcesador::agregarBanda(int banda,int recital){
     this->recitales[recital].push_back(banda);
 }
 
-void GaleyProcesador::crearBandas() {
+void GaleyProcesador::crearBandas() {    
     for (int i = 0; i < this->cantidadBandas; i++) {              
+        std::vector<int> aux;  
+        this->feaInicializacion(aux);
         std::string nombre = "banda_" + std::to_string(i);
         File file(nombre, std::ifstream::in);
-        int preferencia = 0;
-        while (!file.termino()) {            
-            int recital = file.leer();
-            this->agregarRecital(recital, i, preferencia);
+        int preferencia = 0;            
+        while (!file.termino()) {  
+            int recital = file.leer();               
+            aux.insert(aux.begin() + recital, preferencia);            
+//            this->agregarRecital(recital, i, preferencia);
             preferencia++;
         }
+        this->bandas[i] = aux;
         this->completoBandas.push_back(0);
-    }
+    }    
 }
 
 void GaleyProcesador::crearRecitales() {
@@ -50,6 +54,12 @@ void GaleyProcesador::crearRecitales() {
 }
 
 
+void GaleyProcesador::feaInicializacion(std::vector<int> &aux){
+    for (int i = 0; i < this->cantidadRecitales; i++) {
+        aux.push_back(0);
+    }
+}
+
 void GaleyProcesador::leerArchivos() {
     this->crearBandas();
     this->crearRecitales();
@@ -58,9 +68,8 @@ void GaleyProcesador::leerArchivos() {
 int GaleyProcesador::hayRecitalParaProcesar(){
     if(this->completoRecitales.empty()){
       return -1;   
-    }    
-    return this->completoRecitales.begin()->first;
-    
+    }        
+    return this->completoRecitales.begin()->first;    
 }
 
 void GaleyProcesador::actualizarEstructura(int numeroBanda, int numeroRecital){
@@ -68,7 +77,8 @@ void GaleyProcesador::actualizarEstructura(int numeroBanda, int numeroRecital){
     if(unValor == this->cantidadBandas){
         this->completoRecitales.erase(numeroRecital);
     }else{
-        int sarasonga = this->completoRecitales[numeroRecital]++;
+        this->completoRecitales[numeroRecital]++;
+        int sarasonga = this->completoRecitales[numeroRecital];
         if(sarasonga == this->cantidadBandasXRecital){
             this->completoRecitales.erase(numeroRecital);
         }
@@ -97,7 +107,7 @@ void GaleyProcesador::actualizarApareoYAlgunasYerbas(int numeroDeBanda, int nume
     }
 }
 
-void GaleyProcesador::procesar(){ 
+void GaleyProcesador::procesar(){     
     int numeroDeRecital = this->hayRecitalParaProcesar();
     while(numeroDeRecital >= 0){        
         int numeroDePreferenciaRecital = this->siguienteBanda[numeroDeRecital];
@@ -113,6 +123,17 @@ void GaleyProcesador::procesar(){
             }
         }
         numeroDeRecital = hayRecitalParaProcesar();
+    }    
+}
+
+
+void GaleyProcesador::mostrarResultado(){
+    std::cout<<"mostrar Resultado:"<<std::endl;
+    for (SuperTMapInt::iterator it = apareo.begin(); it != apareo.end(); it++) {
+        std::cout<<"La banda "<<it->first <<" va a asistir a los siguientes recitales:"<<std::endl;
+        for (TMapInt::iterator intIt = it->second.begin(); intIt != it->second.end(); intIt++) {
+            std::cout<<intIt->second<<std::endl;
+        }
     }
 }
 

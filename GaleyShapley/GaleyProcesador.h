@@ -11,9 +11,12 @@ private:
     int cantidadBandasXRecital;
     int cantidadRecitalesXBanda;
     typedef std::vector<int> Vectorcito;    
+    typedef std::map<int,int> TMapInt;
+    typedef std::map<int , TMapInt> SuperTMapInt;
     std::map<int ,Vectorcito> bandas;
     std::map<int , Vectorcito> recitales;
-    std::map<int , std::map<int,int>> apareo;
+    SuperTMapInt apareo;
+//    std::map<int , std::map<int,int>> apareo;
 //    std::map<int , Vectorcito> apareo;
     Vectorcito siguienteBanda;
     std::map<int,int> completoRecitales;
@@ -33,6 +36,8 @@ public:
     void actualizarEstructura(int numeroBanda, int numeroRecital);
     void agregarElementoAlApareo(int numeroDeBanda,int numeroDeRecital);
     void actualizarApareoYAlgunasYerbas(int numeroDeBanda,int numeroDeRecital);
+    void feaInicializacion(std::vector<int> &aux);
+    void mostrarResultado();
 };
 
 #endif /* GALEYPROCESADOR_H */
