@@ -18,6 +18,7 @@ int main(int argc, char** argv) {
     GaleyProcesador galeyProcesador(atoi(argv[1]),atoi(argv[2]),atoi(argv[3]),atoi(argv[4]));    
     galeyProcesador.leerArchivos();
     galeyProcesador.procesar();
+    std::cout<<"fin procesador"<<std::endl;
     galeyProcesador.mostrarResultado();
     return 0;
 }

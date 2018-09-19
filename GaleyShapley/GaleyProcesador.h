@@ -37,6 +37,7 @@ public:
     void agregarElementoAlApareo(int numeroDeBanda,int numeroDeRecital);
     void actualizarApareoYAlgunasYerbas(int numeroDeBanda,int numeroDeRecital);
     void feaInicializacion(std::vector<int> &aux);
+    void feaDestruccion(std::vector<int> &aux);
     void mostrarResultado();
 };
 
