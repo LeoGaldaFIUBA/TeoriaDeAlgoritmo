@@ -12,7 +12,6 @@ private:
     std::fstream archivo;       
 public:
     File(std::string nombre, std::ios_base::openmode modo);
-    File(const File& orig);    
     virtual ~File();
     bool termino();
     int leer();

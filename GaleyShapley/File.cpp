@@ -11,9 +11,6 @@ File::File(std::string arch, std::ios_base::openmode modo): nombreArchivo(arch),
     }
 }
 
-File::File(const File& orig) {
-}
-
 File::~File() {
 }
 

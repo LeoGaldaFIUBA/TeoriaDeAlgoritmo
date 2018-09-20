@@ -7,9 +7,6 @@ GaleyProcesador::GaleyProcesador(int N, int M, int X, int Y) :
     cantidadBandasXRecital(X), cantidadRecitalesXBanda(Y) {
 }
 
-GaleyProcesador::GaleyProcesador(const GaleyProcesador& orig) {
-}
-
 GaleyProcesador::~GaleyProcesador() {
 }
 
@@ -112,7 +109,7 @@ void GaleyProcesador::actualizarEstructura(int numeroBanda, int numeroRecital){
     std::cout<<"valor:"<<unValor<<std::endl;
     if(unValor == this->cantidadBandas){
         this->completoRecitales.erase(numeroRecital);
-    }else{
+    } else {
         this->completoRecitales.at(numeroRecital)++;        
 //        this->completoRecitales[numeroRecital]++;
         int sarasonga = this->completoRecitales[numeroRecital];
@@ -139,7 +136,7 @@ void GaleyProcesador::actualizarApareoYAlgunasYerbas(int numeroDeBanda, int nume
     
     if(this->completoRecitales.find(recitalAnterior) != this->completoRecitales.end()){
         this->completoRecitales[recitalAnterior]--;
-    }else{
+    }else if (this->siguienteBanda.at(recitalAnterior) < this->cantidadBandas) {
         this->completoRecitales.insert(std::pair<int,int>(recitalAnterior,this->cantidadBandasXRecital - 1));
     }
 }
@@ -149,21 +146,20 @@ void GaleyProcesador::procesar(){
     while(numeroDeRecital >= 0){        
         int numeroDePreferenciaRecital = this->siguienteBanda[numeroDeRecital];
         int numeroDeBanda = this->recitales.at(numeroDeRecital).at(numeroDePreferenciaRecital);                        
-        std::cout<<"numero de banda"<<numeroDeBanda<<std::endl;
+        std::cout<<"numero de banda "<<numeroDeBanda<<std::endl;
         if(this->completoBandas.at(numeroDeBanda) < this->cantidadRecitalesXBanda){    
             this->agregarElementoAlApareo(numeroDeBanda,numeroDeRecital);
             this->actualizarEstructura(numeroDeBanda, numeroDeRecital);
             this->completoBandas[numeroDeBanda]++;
-        }else{
+        } else {
             std::cout<<"entre al else"<<std::endl;
             int numeroDePreferenciaBanda = this->bandas[numeroDeBanda][numeroDeRecital];
             std::cout<<"numero de pref "<<numeroDePreferenciaBanda<<std::endl;
             if(numeroDePreferenciaBanda < this->apareo[numeroDeBanda].rbegin()->first){
                 std::cout<<"actualizar"<<std::endl;
                 this->actualizarApareoYAlgunasYerbas(numeroDeBanda,numeroDeRecital);
-            }else{
+            } else {
                 this->siguienteBanda[numeroDeRecital]++;
-                
             }
         }
         numeroDeRecital = hayRecitalParaProcesar();

@@ -24,7 +24,6 @@ private:
     
 public:
     GaleyProcesador(int N, int M,int X,int Y);
-    GaleyProcesador(const GaleyProcesador& orig);    
     virtual ~GaleyProcesador();
     void leerArchivos();
     void agregarRecital(int recital, int banda, int preferencia);
