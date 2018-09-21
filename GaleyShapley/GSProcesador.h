@@ -36,6 +36,7 @@ private:
 	void incrementarContadorRecital(int recital);
 	void decrementarContadorRecital(int recital);
 	void actualizarSiguienteBanda(int recital);
+        void actualizarApareo(int recital, int banda);
 };
 
 #endif /* GSPROCESADOR_H_ */
