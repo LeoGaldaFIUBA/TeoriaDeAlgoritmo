@@ -1,9 +1,11 @@
 #include <iostream>
 #include <cstdlib>
+#include <stdio.h>
+#include <string.h>
 #include "NumerosPrimos.h"
 
-int main(int argc, char**argv)
-{
+
+int main(int argc, char**argv){
 	if (argc != 3) {
 		std::cout << "Parametros ingresados incorrectos" << std::endl;
 		return 0;
