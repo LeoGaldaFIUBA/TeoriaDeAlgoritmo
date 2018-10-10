@@ -3,8 +3,6 @@
 DivisionYConquista::DivisionYConquista() {
 }
 
-DivisionYConquista::DivisionYConquista(const DivisionYConquista& orig) {
-}
 
 DivisionYConquista::~DivisionYConquista() {
 }

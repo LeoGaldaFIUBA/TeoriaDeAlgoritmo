@@ -19,8 +19,7 @@ void FuerzaBruta::generarEnvolturaConvexa(){
                     }
                 }
                 if (todosLosPuntosEstanALaDerecha){
-                    Segmento segmento(elem,elem2);
-                    this->envolturaConvexa.push_back(segmento);                    
+                    this->envolturaConvexa[elem] = elem2;            
                 }
             }
         }

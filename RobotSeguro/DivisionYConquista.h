@@ -7,7 +7,6 @@
 class DivisionYConquista : public AlgoritmoDeEnvoltura {
 public:
     DivisionYConquista();
-    DivisionYConquista(const DivisionYConquista& orig);
     virtual ~DivisionYConquista();
     void generarEnvolturaConvexa();
 private:

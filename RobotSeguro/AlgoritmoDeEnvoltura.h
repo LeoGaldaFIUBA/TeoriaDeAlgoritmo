@@ -2,21 +2,28 @@
 #define ALGORITMODEENVOLTURA_H
 
 #include <vector>
+#include <map>
 
 #include "File.h"
 #include "Punto.h"
-#include "Segmento.h"
-
 
 class AlgoritmoDeEnvoltura {
 private:
 protected:
-    typedef std::vector<Segmento> Segmentos;
+    struct Comparador {
+        bool operator()(const Punto& p1, const Punto& p2) const {
+            return p1.getX() < p2.getX();
+        }
+    };
+    
+    typedef std::map<Punto, Punto, Comparador> Segmentos;
     typedef std::vector<Punto> Puntos;
     std::vector<Punto> puntosSeguros;
+    Puntos camino1;
+    Puntos camino2;
     Segmentos envolturaConvexa;
-    
-    
+
+
 public:
     AlgoritmoDeEnvoltura();
     AlgoritmoDeEnvoltura(const AlgoritmoDeEnvoltura& orig);

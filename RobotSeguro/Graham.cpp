@@ -3,9 +3,6 @@
 Graham::Graham() {
 }
 
-Graham::Graham(const Graham& orig) {
-}
-
 Graham::~Graham() {
 }
 

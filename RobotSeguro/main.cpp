@@ -14,13 +14,16 @@ int main(int argc, char**argv) {
         std::cout << "Parametros ingresados incorrectos" << std::endl;
         return 0;
     }    
-    AlgoritmoDeEnvoltura* algoritmo;
-    if (strcmp(argv[2],"F") == 0) {
-        algoritmo = new FuerzaBruta();
+    AlgoritmoDeEnvoltura *algoritmo;
+    if (strcmp(argv[2],"F") == 0) {      
+        FuerzaBruta fuerzaBruta;
+        algoritmo = &fuerzaBruta;
     } else if (strcmp(argv[2],"G") == 0) {
-        algoritmo = new Graham();
-    } else if (strcmp(argv[2],"D") == 0) {
-        algoritmo = new DivisionYConquista();
+//        Graham graham;
+//        algoritmo = &graham;
+    } else if (strcmp(argv[2],"D") == 0) {      
+//        DivisionYConquista divisionYConquista;
+//        algoritmo = &divisionYConquista;
     } else  {
     	std::cout << "Parametros de algoritmo incorrecto" << std::endl;
     	return 0;
@@ -29,5 +32,4 @@ int main(int argc, char**argv) {
     algoritmo->generarEnvolturaConvexa();
     algoritmo->calcularMinimo();
     algoritmo->mostrar();
-    delete(algoritmo);
 }

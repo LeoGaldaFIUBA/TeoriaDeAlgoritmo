@@ -9,7 +9,6 @@ private:
     
 public:
     Graham();
-    Graham(const Graham& orig);
     virtual ~Graham();
     void generarEnvolturaConvexa();
 };
