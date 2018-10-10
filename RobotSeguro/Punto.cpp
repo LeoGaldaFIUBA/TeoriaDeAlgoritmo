@@ -1,10 +1,9 @@
 #include "Punto.h"
+#include <iostream>
 
 Punto::Punto() {
 }
 
-Punto::Punto(const Punto& orig) {
-}
 
 Punto::~Punto() {
 }
@@ -21,11 +20,11 @@ void Punto::setX(int x) {
     this->x = x;
 }
 
-int Punto::getX() const {
+int Punto::getX() const {    
     return x;
 }
 
-bool Punto::distinto(Punto otroPunto){
+bool Punto::distinto(Punto otroPunto){        
     if((this->x != otroPunto.x) || (this->y != otroPunto.y)){
         return true;
     }

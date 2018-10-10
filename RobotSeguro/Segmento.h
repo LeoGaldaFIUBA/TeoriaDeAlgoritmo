@@ -10,7 +10,8 @@ private:
     Punto punto2;
 public:
     Segmento(Punto punto1, Punto punto2);
-    Segmento(const Segmento& orig);
+    Punto getPunto1();
+    Punto getPunto2();
     virtual ~Segmento();    
 };
 

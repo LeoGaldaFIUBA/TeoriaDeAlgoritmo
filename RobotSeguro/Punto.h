@@ -7,7 +7,6 @@ private:
     int y;
 public:
     Punto();
-    Punto(const Punto& orig);
     virtual ~Punto();
     void setY(int y);
     int getY() const;

@@ -3,9 +3,6 @@
 FuerzaBruta::FuerzaBruta() {
 }
 
-FuerzaBruta::FuerzaBruta(const FuerzaBruta& orig) {
-}
-
 FuerzaBruta::~FuerzaBruta() {        
 }
 

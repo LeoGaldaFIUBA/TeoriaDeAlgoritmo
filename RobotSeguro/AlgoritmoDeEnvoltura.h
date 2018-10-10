@@ -11,8 +11,10 @@
 class AlgoritmoDeEnvoltura {
 private:
 protected:
+    typedef std::vector<Segmento> Segmentos;
+    typedef std::vector<Punto> Puntos;
     std::vector<Punto> puntosSeguros;
-    std::vector<Segmento> envolturaConvexa;
+    Segmentos envolturaConvexa;
     
     
 public:

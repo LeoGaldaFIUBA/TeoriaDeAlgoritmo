@@ -10,6 +10,12 @@ AlgoritmoDeEnvoltura::~AlgoritmoDeEnvoltura() {
 }
 
 void AlgoritmoDeEnvoltura::mostrar() {
+    Segmentos::iterator it;
+    for (it = this->envolturaConvexa.begin(); it < this->envolturaConvexa.end(); it++) {        
+        std::cout<<"punto 1: "<<it->getPunto1().getX()<<"-"<<it->getPunto1().getY()<<std::endl;
+        std::cout<<"punto 2: "<<it->getPunto2().getX()<<"-"<<it->getPunto2().getY()<<std::endl;        
+        std::cout<<"---------------------------------_"<<std::endl;
+    }    
 }
 
 void AlgoritmoDeEnvoltura::cargarArchivo(char* nombre_archivo){
@@ -20,5 +26,5 @@ void AlgoritmoDeEnvoltura::cargarArchivo(char* nombre_archivo){
 }
 
 void AlgoritmoDeEnvoltura::calcularMinimo(){
-    
+    std::cout<<"calcular minimo"<<std::endl;
 }

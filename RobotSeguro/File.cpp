@@ -5,8 +5,8 @@
 #include <sstream>
 #include <stdlib.h>
 
-File::File(std::string arch, std::ios_base::openmode modo): nombreArchivo(arch),
-                                                       modo(modo) {
+File::File(std::string arch, std::ios_base::openmode modo) : nombreArchivo(arch),
+modo(modo) {
     this->archivo.open(this->nombreArchivo.c_str(), modo);
     if (this->archivo.fail()) {
         throw std::runtime_error("Error: archivo inexistente.");
@@ -16,19 +16,19 @@ File::File(std::string arch, std::ios_base::openmode modo): nombreArchivo(arch),
 File::~File() {
 }
 
-bool File::termino(){
+bool File::termino() {
     return this->archivo.eof();
 }
 
-Punto File::leer(){        
+Punto File::leer() {
     Punto punto;
     std::string linea;
-    std::getline(this->archivo,linea);
+    std::getline(this->archivo, linea);
     std::istringstream streamLinea(linea);
     int puntito;
-    streamLinea >> puntito;      
+    streamLinea >> puntito;
     punto.setX(puntito);
-    streamLinea >> puntito;     
+    streamLinea >> puntito;
     punto.setY(puntito);
     return punto;
 }

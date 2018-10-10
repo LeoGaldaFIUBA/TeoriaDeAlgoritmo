@@ -9,7 +9,6 @@ private:
     
 public:
     FuerzaBruta();
-    FuerzaBruta(const FuerzaBruta& orig);
     virtual ~FuerzaBruta();
     void generarEnvolturaConvexa();
     int area(Punto p1, Punto p2, Punto p3);
