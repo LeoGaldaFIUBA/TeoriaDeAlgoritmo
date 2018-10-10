@@ -4,17 +4,18 @@
 #include <fstream>
 #include <string>
 #include <iostream>
+#include "Punto.h"
 
 class File {
 private:
     std::string nombreArchivo;
     std::ios_base::openmode modo;
-    std::fstream archivo;       
+    std::fstream archivo;
 public:
     File(std::string nombre, std::ios_base::openmode modo);
     virtual ~File();
     bool termino();
-    int leer();
+    Punto leer();
 
 };
 

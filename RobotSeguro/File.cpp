@@ -2,6 +2,7 @@
 #include "Punto.h"
 
 #include <string>
+#include <sstream>
 #include <stdlib.h>
 
 File::File(std::string arch, std::ios_base::openmode modo): nombreArchivo(arch),
