@@ -2,7 +2,7 @@
 ################
 
 # Nombre del ejecutable.
-target = main
+target = RobotSeguro
 
 # Extensión de los archivos a compilar (c para C, cpp o cc o cxx para C++).
 extension = cpp
