@@ -18,7 +18,7 @@ protected:
     
     typedef std::map<Punto, Punto, Comparador> Segmentos;
     typedef std::vector<Punto> Puntos;
-    std::vector<Punto> puntosSeguros;
+    Puntos puntosSeguros;
     Puntos camino1;
     Puntos camino2;
     Segmentos envolturaConvexa;
