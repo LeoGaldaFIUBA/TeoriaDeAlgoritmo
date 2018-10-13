@@ -40,10 +40,11 @@ void Graham::generarEnvolturaConvexa() {
             i++;
         }
     }
-    
-    Puntos::iterator it;
-    for(it = auxiliar.begin(); it != auxiliar.end(); it++){
-        std::cout<<it->getX()<<"-"<<it->getY()<<std::endl;
+        
+    while(!pila.empty()){
+        Punto punto = pila.top();
+        std::cout<<punto.getX()<<"-"<<punto.getY()<<std::endl;
+        pila.pop();
     }
 }
 

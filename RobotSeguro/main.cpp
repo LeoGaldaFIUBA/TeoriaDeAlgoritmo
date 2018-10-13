@@ -30,7 +30,7 @@ int main(int argc, char**argv) {
     	return 0;
     }
     algoritmo->cargarArchivo(argv[1]);    
-    algoritmo->generarEnvolturaConvexa();    
+    algoritmo->generarEnvolturaConvexa();      
     algoritmo->calcularMinimo();
     algoritmo->mostrar();
 }
