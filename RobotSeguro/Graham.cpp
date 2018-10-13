@@ -41,16 +41,16 @@ void Graham::generarEnvolturaConvexa() {
             i++;
         }
     }            
+    Punto primero = pila.top();
     while(!pila.empty()){
-        Punto puntoTop = pila.top();        
-        std::cout<<puntoTop.getX()<<"-"<<puntoTop.getY()<<std::endl;
+        Punto puntoTop = pila.top();                
         pila.pop();
         if(!pila.empty()){
             this->envolturaConvexa[puntoTop] = pila.top();  
         }else{
-            this->envolturaConvexa[puntoTop] = auxiliar[0];                           
+            this->envolturaConvexa[puntoTop] = primero;
         }        
-    }    
+    }             
 }
 
 int Graham::estaALaIzquierda(Punto p0, Punto p1, Punto p2) {
