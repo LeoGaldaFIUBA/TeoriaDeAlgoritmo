@@ -28,7 +28,7 @@ public:
     AlgoritmoDeEnvoltura();    
     virtual ~AlgoritmoDeEnvoltura();
     void mostrar();
-    virtual void generarEnvolturaConvexa();
+    virtual void generarEnvolturaConvexa() = 0;
     void calcularMinimo();
     void cargarArchivo(char* archivo);
 

@@ -37,7 +37,7 @@ void AlgoritmoDeEnvoltura::cargarArchivo(char* nombre_archivo){
     }    
 }
 
-void AlgoritmoDeEnvoltura::calcularMinimo(){
+void AlgoritmoDeEnvoltura::calcularMinimo(){    
     Punto puntoConvexo = this->puntosSeguros[0];    
     while(puntoConvexo.distinto(this->puntosSeguros[1])){
         camino1.push_back(puntoConvexo);
