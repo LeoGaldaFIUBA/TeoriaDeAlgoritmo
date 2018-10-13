@@ -3,9 +3,6 @@
 AlgoritmoDeEnvoltura::AlgoritmoDeEnvoltura() {
 }
 
-AlgoritmoDeEnvoltura::AlgoritmoDeEnvoltura(const AlgoritmoDeEnvoltura& orig) {
-}
-
 AlgoritmoDeEnvoltura::~AlgoritmoDeEnvoltura() {
 }
 

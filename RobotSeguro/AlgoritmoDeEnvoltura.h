@@ -25,11 +25,10 @@ protected:
 
 
 public:
-    AlgoritmoDeEnvoltura();
-    AlgoritmoDeEnvoltura(const AlgoritmoDeEnvoltura& orig);
+    AlgoritmoDeEnvoltura();    
     virtual ~AlgoritmoDeEnvoltura();
     void mostrar();
-    virtual void generarEnvolturaConvexa() = 0;
+    virtual void generarEnvolturaConvexa();
     void calcularMinimo();
     void cargarArchivo(char* archivo);
 

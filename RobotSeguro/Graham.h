@@ -3,16 +3,13 @@
 
 #include "AlgoritmoDeEnvoltura.h"
 
-
 class Graham : public AlgoritmoDeEnvoltura {
 private:    
 public:
     Graham();
     virtual ~Graham();
     void generarEnvolturaConvexa();
-    bool comparadorPunto(Punto a, Punto b);
-    int sqrDist(Punto a, Punto b);
-    int ccw(Punto a, Punto b, Punto c);
+    int estaALaIzquierda(Punto p0, Punto p1, Punto p2);
 };
 
 #endif /* GRAHAM_H */
