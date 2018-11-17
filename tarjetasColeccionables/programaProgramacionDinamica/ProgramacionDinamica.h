@@ -13,9 +13,6 @@ public:
     ProgramacionDinamica(char* nombreArchivo, int cantidadDeTarjetas); 
     void procesar();
     void mostrarResultados();    
-    void inicializarMatriz(std::vector<std::vector<int>> &matriz);  
-    int minimo(int v1, int v2);
-    void obtenerTarjetas(std::vector<std::vector<int>> &matriz);
     virtual ~ProgramacionDinamica();
 
 };
