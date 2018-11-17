@@ -1,3 +1,5 @@
+#include <algorithm>
+
 #include "Greedy.h"
 #include "File.h"
 
@@ -6,6 +8,7 @@ Greedy::Greedy(char *nombreArchivo, int cantidadDeTarjetas) : cantidadDeTarjetas
     while (!archivo.termino()) {
         this->tarjetas.push_back(archivo.leer());
     }
+    std::sort_heap(this->tarjetas.begin(),this->tarjetas.end(),std::greater<int>());
 }
 
 void Greedy::procesar() {
