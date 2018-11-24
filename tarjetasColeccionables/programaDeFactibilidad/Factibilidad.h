@@ -8,6 +8,8 @@
 class Factibilidad {
 private:
     std::vector<int> tarjetas;
+    int resultado;
+    int contraejemplo;
 public:
     Factibilidad(char *nombreArchivo);    
     void procesar();
