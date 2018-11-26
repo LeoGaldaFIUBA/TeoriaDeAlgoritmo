@@ -19,6 +19,6 @@ int main(int argc, char** argv) {
     red.cargarMatriz(argv[1]);
     red.agregarDemandas(argv[2]);
     red.calcularFordFulkersen();   
-    red.mostrar();
+    red.mostrarResultado();
 }
 

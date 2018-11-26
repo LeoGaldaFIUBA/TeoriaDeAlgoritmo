@@ -128,25 +128,37 @@ void Red::calcularFordFulkersen() {
         }
         flujoMaximo += pathFlow;    
     }    
-    std::cout<< "flujo Maximo:"<<flujoMaximo<<std::endl;
+//    std::cout<< "flujo Maximo:"<<flujoMaximo<<std::endl;
 }
 
-void Red::mostrar() {
-    std::cout<<"matriz de adyacencias"<<std::endl;
+void Red::mostrarResultado() {    
+    bool resultado = true;
     for (int i = 0; i <= this->sumidero; i++) {
-        for (int j = 0; j <= this->sumidero; j++) {
-            std::cout << this->matrizDeAdyacencia[i][j]<<"-";
-        }
-        std::cout << std::endl;
+        if(this->matrizResidual[i][this->sumidero]){
+            resultado = false;
+        }            
+    }
+    if(resultado){
+        std::cout<<"Es factible proporcionar un servicio adecuado"<<std::endl;
+    }else{
+        std::cout<<"No es factible proporcionar un servicio adecuado"<<std::endl;
     }
     
-    std::cout<<"matriz residual"<<std::endl;
-    for (int i = 0; i <= this->sumidero; i++) {
-        for (int j = 0; j <= this->sumidero; j++) {
-            std::cout << this->matrizResidual[i][j]<<"-";
-        }
-        std::cout << std::endl;
-    }
+//    std::cout<<"matriz de adyacencias"<<std::endl;
+//    for (int i = 0; i <= this->sumidero; i++) {
+//        for (int j = 0; j <= this->sumidero; j++) {
+//            std::cout << this->matrizDeAdyacencia[i][j]<<"-";
+//        }
+//        std::cout << std::endl;
+//    }
+    
+//    std::cout<<"matriz residual"<<std::endl;
+//    for (int i = 0; i <= this->sumidero; i++) {
+//        for (int j = 0; j <= this->sumidero; j++) {
+//            std::cout << this->matrizResidual[i][j]<<"-";
+//        }
+//        std::cout << std::endl;
+//    }
 }
 
 Red::~Red() {

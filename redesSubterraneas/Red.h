@@ -6,10 +6,7 @@
 
 
 class Red {
-private:        
-//    std::vector<std::vector<int>> matrizDeAdyacencia;
-//    std::vector<std::vector<int>> matrizResidual;
-    
+private:            
     typedef std::vector<int> VectorType;
     typedef std::vector<VectorType> Matriz;    
     Matriz matrizDeAdyacencia;
@@ -23,7 +20,7 @@ public:
     Matriz inicializarMatriz(int size);
     void agregarDemandas(char *archivoDeDemandas);
     void calcularFordFulkersen();
-    void mostrar();    
+    void mostrarResultado();    
     bool BFS(std::vector<int> &parent);
     virtual ~Red();
 
