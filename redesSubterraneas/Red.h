@@ -14,7 +14,7 @@ public:
     Red();
     void cargarMatriz(char *archivoDeRelaciones);
     void cargarCapacidades(std::string &linea, int fila);
-    void inicializarMatriz(int size);
+    std::vector<std::vector<int>> inicializarMatriz(int size);
     void agregarDemandas(char *archivoDeDemandas);
     void calcularFordFulkersen();
     void mostrar();    

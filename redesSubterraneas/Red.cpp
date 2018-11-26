@@ -3,6 +3,7 @@
 
 #include <sstream>
 #include <cmath>
+#include <csignal>
 
 Red::Red() {
 }
@@ -16,7 +17,7 @@ void Red::cargarMatriz(char* archivoDeRelaciones) {
         fila++;
     }
     this->fuente = 0;
-    this->sumidero = --fila;
+    this->sumidero = fila;
 }
 
 void Red::cargarCapacidades(std::string &linea, int fila) {
@@ -25,21 +26,29 @@ void Red::cargarCapacidades(std::string &linea, int fila) {
         streamLinea.seekg(0, streamLinea.end);
         int longitud = 1 + streamLinea.tellg()/2;                
         streamLinea.seekg(0, streamLinea.beg);
-        this->inicializarMatriz(longitud);
+        this->matrizDeAdyacencia = this->inicializarMatriz(longitud);
     }
     int col = 0;
-    for (auto capacidad : linea) {
-        this->matrizDeAdyacencia.at(fila).at(col) = capacidad;
-        //        this->matrizDeAdyacencia[fila][col] = capacidad;
+    int capacidad;
+    while(streamLinea >> capacidad){
+        this->matrizDeAdyacencia[fila][col] = capacidad;
         col++;
     }
 }
 
-void Red::inicializarMatriz(int size) {
-    
+std::vector<std::vector<int>> Red::inicializarMatriz(int size) {   
+    std::vector<std::vector<int>> matriz;
+    for(int i = 0; i < size; i++){
+        std::vector<int> row;
+        matriz.push_back(row);
+        for(int j = 0; j < size; j++){
+            matriz[i].push_back(0);
+        }
+    }
+    return matriz;
 }
 
-void Red::agregarDemandas(char* archivoDeDemandas) {
+void Red::agregarDemandas(char* archivoDeDemandas) {    
     File archivo(archivoDeDemandas, std::ios::in);
     int fila = 0;
     while (!archivo.termino()) {
@@ -47,9 +56,10 @@ void Red::agregarDemandas(char* archivoDeDemandas) {
         std::istringstream streamLinea(linea);
         int demanda;
         streamLinea >> demanda;
-        this->matrizDeAdyacencia[fila][this->fuente] = demanda;
+        this->matrizDeAdyacencia[this->fuente][fila] = demanda;
         streamLinea >> demanda;
-        this->matrizDeAdyacencia[fila][this->sumidero] = demanda;
+        int max = this->sumidero - 1;
+        this->matrizDeAdyacencia[fila][max] = demanda;
         fila++;
     }
 }
@@ -59,9 +69,9 @@ void Red::calcularFordFulkersen() {
 }
 
 void Red::mostrar() {
-    for (int i = 0; i < --this->sumidero; i++) {
-        for (int j = 0; j < --this->sumidero; j++) {
-            std::cout << this->matrizDeAdyacencia[i][j];
+    for (int i = 0; i < this->sumidero; i++) {
+        for (int j = 0; j < this->sumidero; j++) {
+            std::cout << this->matrizDeAdyacencia[i][j]<<"-";
         }
         std::cout << std::endl;
     }
